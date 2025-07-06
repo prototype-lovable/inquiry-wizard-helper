@@ -67,7 +67,7 @@ const InquiryFlow = ({ company, onBack, skipCompanySelection = false }: InquiryF
   const progress = (currentStep / 3) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-white">
       <InquiryHeader 
         onBack={onBack}
         company={company}

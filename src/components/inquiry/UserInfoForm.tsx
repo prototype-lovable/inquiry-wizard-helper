@@ -35,52 +35,52 @@ const UserInfoForm = ({
   onNext 
 }: UserInfoFormProps) => {
   return (
-    <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+    <Card className="border-2 border-gray-200 shadow-lg bg-white">
       <CardHeader>
-        <CardTitle className="text-3xl text-center mb-4">기본 정보를 입력해주세요</CardTitle>
+        <CardTitle className="text-3xl text-center mb-4 text-black">기본 정보를 입력해주세요</CardTitle>
         <p className="text-center text-lg text-gray-600">
           답변을 받기 위해 필요한 정보입니다
         </p>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-3">
-          <Label htmlFor="name" className="text-lg font-medium">이름 *</Label>
+          <Label htmlFor="name" className="text-lg font-medium text-black">이름 *</Label>
           <Input
             id="name"
             value={userInfo.name}
             onChange={(e) => onUserInfoChange({...userInfo, name: e.target.value})}
             placeholder="홍길동"
-            className="border-2 border-blue-100 focus:border-blue-300 py-4 text-lg"
+            className="border-2 border-gray-200 focus:border-[#00BB66] py-4 text-lg"
           />
         </div>
         
         <div className="space-y-3">
-          <Label htmlFor="email" className="text-lg font-medium">이메일 *</Label>
+          <Label htmlFor="email" className="text-lg font-medium text-black">이메일 *</Label>
           <Input
             id="email"
             type="email"
             value={userInfo.email}
             onChange={(e) => onUserInfoChange({...userInfo, email: e.target.value})}
             placeholder="example@email.com"
-            className="border-2 border-blue-100 focus:border-blue-300 py-4 text-lg"
+            className="border-2 border-gray-200 focus:border-[#00BB66] py-4 text-lg"
           />
         </div>
         
         <div className="space-y-3">
-          <Label htmlFor="phone" className="text-lg font-medium">연락처 (선택사항)</Label>
+          <Label htmlFor="phone" className="text-lg font-medium text-black">연락처 (선택사항)</Label>
           <Input
             id="phone"
             value={userInfo.phone}
             onChange={(e) => onUserInfoChange({...userInfo, phone: e.target.value})}
             placeholder="010-1234-5678"
-            className="border-2 border-blue-100 focus:border-blue-300 py-4 text-lg"
+            className="border-2 border-gray-200 focus:border-[#00BB66] py-4 text-lg"
           />
         </div>
         
         {skipCompanySelection && (
           <div className="space-y-3">
-            <Label htmlFor="companyGuess" className="text-lg font-medium flex items-center">
-              <Building2 className="w-5 h-5 mr-2 text-blue-600" />
+            <Label htmlFor="companyGuess" className="text-lg font-medium text-black flex items-center">
+              <Building2 className="w-5 h-5 mr-2 text-[#00BB66]" />
               문의할 기업명 (아는 경우만)
             </Label>
             <Input
@@ -88,7 +88,7 @@ const UserInfoForm = ({
               value={userInfo.companyGuess}
               onChange={(e) => onUserInfoChange({...userInfo, companyGuess: e.target.value})}
               placeholder="예: 삼성전자, 네이버, 쿠팡 등"
-              className="border-2 border-blue-100 focus:border-blue-300 py-4 text-lg"
+              className="border-2 border-gray-200 focus:border-[#00BB66] py-4 text-lg"
             />
             <p className="text-sm text-gray-500">
               💡 모르셔도 괜찮아요! 문의 내용을 보고 저희가 적절한 기업을 찾아드려요
@@ -98,25 +98,25 @@ const UserInfoForm = ({
         
         {(selectedType === "refund" || selectedType === "complaint") && (
           <div className="space-y-3">
-            <Label htmlFor="orderNumber" className="text-lg font-medium">주문번호 (있는 경우)</Label>
+            <Label htmlFor="orderNumber" className="text-lg font-medium text-black">주문번호 (있는 경우)</Label>
             <Input
               id="orderNumber"
               value={userInfo.orderNumber}
               onChange={(e) => onUserInfoChange({...userInfo, orderNumber: e.target.value})}
               placeholder="예: ORD-2024-001"
-              className="border-2 border-blue-100 focus:border-blue-300 py-4 text-lg"
+              className="border-2 border-gray-200 focus:border-[#00BB66] py-4 text-lg"
             />
           </div>
         )}
         
         <div className="space-y-3">
-          <Label htmlFor="keywords" className="text-lg font-medium">키워드 (AI 문구 생성용)</Label>
+          <Label htmlFor="keywords" className="text-lg font-medium text-black">키워드 (AI 문구 생성용)</Label>
           <Input
             id="keywords"
             value={keywords}
             onChange={(e) => onKeywordsChange(e.target.value)}
             placeholder="예: 배송 지연, 제품 불량, 계정 잠금"
-            className="border-2 border-blue-100 focus:border-blue-300 py-4 text-lg"
+            className="border-2 border-gray-200 focus:border-[#00BB66] py-4 text-lg"
           />
           <p className="text-base text-gray-500">
             💡 키워드를 입력하면 AI가 더 정확한 문의 문구를 생성합니다
@@ -127,7 +127,7 @@ const UserInfoForm = ({
           <Button 
             variant="outline" 
             onClick={onBack}
-            className="flex-1 py-4 text-lg"
+            className="flex-1 py-4 text-lg border-2 border-gray-300 text-black hover:bg-gray-50"
             size="lg"
           >
             이전
@@ -135,7 +135,7 @@ const UserInfoForm = ({
           <Button 
             onClick={onNext}
             disabled={!userInfo.name || !userInfo.email}
-            className="flex-1 py-4 text-lg"
+            className="flex-1 py-4 text-lg bg-[#00BB66] hover:bg-[#009955] text-white"
             size="lg"
           >
             다음 단계
