@@ -5,7 +5,6 @@ import { FileText, CreditCard, User, AlertCircle } from "lucide-react";
 import InquiryHeader from "./inquiry/InquiryHeader";
 import InquiryTypeSelection from "./inquiry/InquiryTypeSelection";
 import UserInfoForm from "./inquiry/UserInfoForm";
-import InquiryComposer from "./inquiry/InquiryComposer";
 import { useInquiryAI } from "@/hooks/useInquiryAI";
 
 interface InquiryFlowProps {
@@ -26,10 +25,8 @@ const InquiryFlow = ({ company, onBack, skipCompanySelection = false }: InquiryF
     orderNumber: "",
     companyGuess: ""
   });
-  const [isGenerating, setIsGenerating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  const { generateAIInquiry } = useInquiryAI();
 
   const inquiryTypes = [
     { id: "refund", label: "환불/교환", icon: CreditCard, description: "제품 환불이나 교환을 요청하고 싶어요" },
@@ -37,10 +34,6 @@ const InquiryFlow = ({ company, onBack, skipCompanySelection = false }: InquiryF
     { id: "complaint", label: "불만/클레임", icon: AlertCircle, description: "서비스나 제품에 문제가 있어요" },
     { id: "general", label: "일반 문의", icon: FileText, description: "기타 궁금한 점이 있어요" }
   ];
-
-  const handleGenerateAI = () => {
-    generateAIInquiry(selectedType, company, userInfo, keywords, setInquiryText, setIsGenerating);
-  };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -64,7 +57,7 @@ const InquiryFlow = ({ company, onBack, skipCompanySelection = false }: InquiryF
     }, 1500);
   };
 
-  const progress = (currentStep / 3) * 100;
+  const progress = (currentStep / 2) * 100;
 
   return (
     <div className="min-h-screen bg-white">
@@ -94,24 +87,10 @@ const InquiryFlow = ({ company, onBack, skipCompanySelection = false }: InquiryF
             selectedType={selectedType}
             skipCompanySelection={skipCompanySelection}
             onBack={() => setCurrentStep(1)}
-            onNext={() => setCurrentStep(3)}
-          />
-        )}
-
-        {currentStep === 3 && (
-          <InquiryComposer
+            onNext={handleSubmit}
             inquiryText={inquiryText}
             onInquiryTextChange={setInquiryText}
-            isGenerating={isGenerating}
-            onGenerateAI={handleGenerateAI}
-            isSubmitting={isSubmitting}
-            onSubmit={handleSubmit}
-            onBack={() => setCurrentStep(2)}
             company={company}
-            skipCompanySelection={skipCompanySelection}
-            userInfo={userInfo}
-            selectedType={selectedType}
-            inquiryTypes={inquiryTypes}
           />
         )}
       </div>

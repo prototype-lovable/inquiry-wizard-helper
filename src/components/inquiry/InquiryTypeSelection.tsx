@@ -27,12 +27,12 @@ const InquiryTypeSelection = ({ selectedType, onTypeSelect, onNext }: InquiryTyp
   return (
     <Card className="border-2 border-gray-200 shadow-lg bg-white">
       <CardHeader>
-        <CardTitle className="text-3xl text-center mb-4 text-black">문의 유형을 선택해주세요</CardTitle>
-        <p className="text-center text-lg text-gray-600">
+        <CardTitle className="text-2xl text-center mb-3 text-black">문의 유형을 선택해주세요</CardTitle>
+        <p className="text-center text-base text-gray-600">
           가장 비슷한 유형을 선택하시면 더 정확한 답변을 받을 수 있어요
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-3">
         {inquiryTypes.map((type) => (
           <Card
             key={type.id}
@@ -43,18 +43,18 @@ const InquiryTypeSelection = ({ selectedType, onTypeSelect, onNext }: InquiryTyp
             }`}
             onClick={() => onTypeSelect(type.id)}
           >
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className={`w-16 h-16 rounded-xl flex items-center justify-center ${
+            <CardContent className="p-4">
+              <div className="flex items-center space-x-3">
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
                   selectedType === type.id ? "bg-[#00BB66]" : "bg-gray-100"
                 }`}>
-                  <type.icon className={`w-8 h-8 ${
+                  <type.icon className={`w-6 h-6 ${
                     selectedType === type.id ? "text-white" : "text-gray-600"
                   }`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-xl text-black">{type.label}</h3>
-                  <p className="text-gray-600 text-base mt-1">{type.description}</p>
+                  <h3 className="font-bold text-lg text-black">{type.label}</h3>
+                  <p className="text-gray-600 text-sm mt-1">{type.description}</p>
                 </div>
               </div>
             </CardContent>
@@ -62,10 +62,9 @@ const InquiryTypeSelection = ({ selectedType, onTypeSelect, onNext }: InquiryTyp
         ))}
         
         <Button 
-          className="w-full mt-8 py-6 text-xl bg-[#00BB66] hover:bg-[#009955] text-white" 
+          className="w-full mt-6 h-12 bg-[#00BB66] hover:bg-[#009955] text-white" 
           onClick={onNext}
           disabled={!selectedType}
-          size="lg"
         >
           다음 단계
         </Button>
